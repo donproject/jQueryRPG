@@ -1,0 +1,153 @@
+html {
+  height:100%;
+}
+
+body {
+  height:100%;
+  font-size:1em;
+  color: #bb852c;
+  font-family: 'IM Fell DW Pica', serif;
+  background: url('images/Homo_floresiensis_cave.jpg');
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* -------------header styling------------- */
+header {
+  width:80%;
+  margin:auto;
+  background-color: #e6e6e6;
+  background-color: rgba(0,0,0, 0.6);
+  text-align: center;
+  text-shadow: .05em .05em .1em #666;
+  border:2px solid #4f1e00;
+  border-width: 2px 2px 1px 2px;
+}
+
+h1 {
+  font-size:1.6em;
+}
+
+/* -------------main section styling------------- */
+main {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  background-color: #e6e6e6;
+  background-color: rgba(0,0,0, 0.6);
+  border:2px solid #4f1e00;
+  border-width: 1px 2px 2px 2px;
+}
+
+h2 {
+  font-size: 1.3em;
+  text-align: center;
+}
+
+p {
+  margin:0.2em;
+}
+
+#characterSheet {
+  height: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  overflow: auto;
+}
+
+input, select, button {
+  border:1px dashed #984511;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  background-color: #e6e6e6;
+  background-color: rgba(0,0,0, 0.6);
+}
+
+::-webkit-input-placeholder {
+  color: #bb852c;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: #bb852c;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: #bb852c;
+}
+
+:-ms-input-placeholder {  
+  color: #bb852c;
+}
+
+#characterInfo {
+  height: 20%;
+  display:none;
+}
+
+table {
+  width:100%;
+  height:100%;
+}
+
+td {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.stat {
+  font-size: 1.2em;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+#mapContainer {
+  height: 80%;
+  display:none;
+}
+
+.mapRow {
+  width:90%;
+  margin: auto;
+}
+
+.mapBlock {
+  height:100%;
+  background-color: #000000;
+  margin:-1px;
+  border: 1px solid white;
+  float:left;
+  text-align: center;
+}
+
+.mapBlock:hover {
+  background-color: #333333;
+}
+
+.viewed {
+  background-color: #bbaf2c;
+  color:#2a2600;
+}
+
+.overlay {
+  height: 80%;
+  display: none;
+  text-align: center;
+}
+
+h3 {
+  font-size:1.2em;
+}
+
+/* -------------footer styling------------- */
+footer {
+  width:80%;
+  margin:auto;
+  background-color: #e6e6e6;
+  background-color: rgba(0,0,0, 0.6);
+  font-size: 1.1em;
+  text-align: center;
+  border:2px solid #4f1e00;
+  border-width: 0 2px 2px 2px;
+}
