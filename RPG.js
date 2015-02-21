@@ -1,6 +1,7 @@
 $(function() {
   var mapWidth = 5, mapHeight = 5, cellWdith, cellHeight, rowString, cellContents = {}, noTreasure = true, tempRow, tempCol;
   var user = {}, answer1, answer2, answer3, answer4;
+  var monster = {};
   var clickedRow, clickedCol;
 
   user.showInfo = function() {
@@ -16,6 +17,7 @@ $(function() {
     var cell = '#' + user.row.toString() + "-" + user.col.toString();
     tempCol = user.col - 1;
     tempRow = "row" + user.row.toString();
+
     if (cellContents[tempRow][tempCol] == "Treasure") {
       $('#mapContainer').hide();
       $('#winningContainer').show();
@@ -35,6 +37,7 @@ $(function() {
   user.move = function() {
     var oldCell = '#' + user.row.toString() + "-" + user.col.toString();
     var newCell = '#' + clickedRow.toString() + "-" + clickedCol.toString();
+
     $(oldCell).html("");
     user.row = clickedRow;
     user.col = clickedCol;
@@ -42,14 +45,13 @@ $(function() {
   };
 
   cellContents.fight = function () {
-    var monster = {};
     monster.charisma = Math.floor(Math.random() * 19) + 1;
     monster.intelligence = Math.floor(Math.random() * 19) + 1;
     monster.strength = Math.floor(Math.random() * 19) + 1;
     monster.dexterity = Math.floor(Math.random() * 19) + 1;
     monster.life = Math.floor(Math.random() * 19) + 1;
 
-    $('#monsterRun').on('click',function () {
+    $('#monsterRun').unbind('click').click(function () {
       if (user.charisma > monster.charisma && user.intelligence > monster.intelligence) {
         $('#message').text("You escape with ease!");
       } else if (user.charisma <= monster.charisma && user.intelligence <= monster.intelligence) {
@@ -59,9 +61,9 @@ $(function() {
         user.life -= Math.floor(monster.strength / 4)+1;
         $('#message').text("The monster hits you, but you manage to escape!");
       }
-      decideNextAction(monster);
+      decideNextAction();
     });
-    $('#monsterFight').on('click',function () {
+    $('#monsterFight').unbind('click').click(function () {
       while (monster.life > 0 && user.life > 0) {
         if (user.strength > monster.strength && user.dexterity > monster.dexterity) {
           monster.life = 0;
@@ -73,17 +75,17 @@ $(function() {
           user.life -= Math.floor(monster.strength / 2) + 1;
         }
       }
-      decideNextAction(monster);
+      decideNextAction();
     });
 
-    $('#fightDone').on('click',function () {
+    $('#fightDone').click(function () {
       $('#mapContainer').show();
       $('#messageContainer').hide();
-      $('footer').text("Hint: Click a section of dungeon adjacent to your character.");
+      $('footer').text("Hint: Click a section of the dungeon next to your character.");
     });
   };
 
-  var decideNextAction = function(monster) {
+  var decideNextAction = function() {
     if (monster.life <= 0) {
       $('#message').text("You killed the monster!");
       cellContents[tempRow][tempCol] = "Empty";
@@ -99,13 +101,15 @@ $(function() {
     $('#messageContainer').show();
   };
 
-  //create map (in background)
+  // create map
   for (var row=1;row<=mapHeight;row++) {
     rowString = '<div class="mapRow">';
-    var tempRowContent = [];
+    var tempRowContent = [], rowName = "row";
+
     for (var col=1;col<=mapWidth;col++) {
       rowString += '<span class="mapBlock" id="'+row+'-'+col+'"></span>';
       var choice = Math.random();
+
       if (choice < 0.1 && noTreasure) {
         tempRowContent.push("Treasure");
         noTreasure = false;
@@ -115,7 +119,7 @@ $(function() {
         tempRowContent.push("Empty");
       }
     }
-    var rowName = "row";
+
     rowName += row.toString();
     cellContents[rowName] = tempRowContent;
     rowString += '</div>';
@@ -135,8 +139,8 @@ $(function() {
     cellContents[tempRow][tempCol] = "Treasure";
   }
 
-  //create character
-  $('#characterDone').on('click',function(){
+  // create character
+  $('#characterDone').click(function(){
     user.name = $('input[name="player"]').val();
     if (user.name === '') {
       user.name = "Ol' No Name";
@@ -261,7 +265,7 @@ $(function() {
     });
   });
 
-  //play game (respond to user input on map)
+  // play game 
   $('.mapBlock').click(function (event) {
     var clickedBlock = event.target.id, leftCol = parseInt(user.col,10) - 1, rightCol = parseInt(user.col,10) + 1, upRow = parseInt(user.row,10) - 1, downRow = parseInt(user.row,10) + 1;
     clickedCol = clickedBlock[2];
@@ -272,7 +276,7 @@ $(function() {
     } else if (clickedCol == user.col && clickedRow == user.row) {
       $('footer').text("Hint: You are already there. Try a different section.");
     } else {
-      $('footer').text("Hint: You can't move there. Try a different section.");
+      $('footer').text("Hint: You can only move one block at a time! Try a different section.");
     }
   });
 });

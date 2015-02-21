@@ -4,8 +4,8 @@ html {
 
 body {
   height:100%;
-  font-size:1em;
-  color: #bb852c;
+  font-size:1.1em;
+  color: #ffdead;
   font-family: 'IM Fell DW Pica', serif;
   background: url('images/Homo_floresiensis_cave.jpg');
   background-repeat: no-repeat;
@@ -21,7 +21,6 @@ header {
   background-color: #e6e6e6;
   background-color: rgba(0,0,0, 0.6);
   text-align: center;
-  text-shadow: .05em .05em .1em #666;
   border:2px solid #4f1e00;
   border-width: 2px 2px 1px 2px;
 }
@@ -66,19 +65,19 @@ input, select, button {
 }
 
 ::-webkit-input-placeholder {
-  color: #bb852c;
+  color: #d2b48c;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-  color: #bb852c;
+  color: #d2b48c;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-  color: #bb852c;
+  color: #d2b48c;
 }
 
 :-ms-input-placeholder {  
-  color: #bb852c;
+  color: #d2b48c;
 }
 
 #characterInfo {
