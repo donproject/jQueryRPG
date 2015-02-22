@@ -51,7 +51,7 @@ $(function() {
     monster.dexterity = Math.floor(Math.random() * 19) + 1;
     monster.life = Math.floor(Math.random() * 19) + 1;
 
-    $('#monsterRun').unbind('click').click(function () {
+    $('#monsterRun').unbind('click').on('click',function () {
       if (user.charisma > monster.charisma && user.intelligence > monster.intelligence) {
         $('#message').text("You escape with ease!");
       } else if (user.charisma <= monster.charisma && user.intelligence <= monster.intelligence) {
@@ -63,7 +63,7 @@ $(function() {
       }
       decideNextAction();
     });
-    $('#monsterFight').unbind('click').click(function () {
+    $('#monsterFight').unbind('click').on('click',function () {
       while (monster.life > 0 && user.life > 0) {
         if (user.strength > monster.strength && user.dexterity > monster.dexterity) {
           monster.life = 0;
@@ -78,7 +78,7 @@ $(function() {
       decideNextAction();
     });
 
-    $('#fightDone').click(function () {
+    $('#fightDone').on('click',function () {
       $('#mapContainer').show();
       $('#messageContainer').hide();
       $('footer').text("Hint: Click a section of the dungeon next to your character.");
@@ -140,7 +140,7 @@ $(function() {
   }
 
   // create character
-  $('#characterDone').click(function(){
+  $('#characterDone').on('click',function(){
     user.name = $('input[name="player"]').val();
     if (user.name === '') {
       user.name = "Ol' No Name";
@@ -266,7 +266,7 @@ $(function() {
   });
 
   // play game 
-  $('.mapBlock').click(function (event) {
+  $('.mapBlock').on('click',function (event) {
     var clickedBlock = event.target.id, leftCol = parseInt(user.col,10) - 1, rightCol = parseInt(user.col,10) + 1, upRow = parseInt(user.row,10) - 1, downRow = parseInt(user.row,10) + 1;
     clickedCol = clickedBlock[2];
     clickedRow = clickedBlock[0];
