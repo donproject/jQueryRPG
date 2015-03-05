@@ -129,6 +129,10 @@ td {
   color:#2a2600;
 }
 
+.viewed:hover {
+  background-color: #ffcc44;
+}
+
 .overlay {
   height: 80%;
   display: none;
